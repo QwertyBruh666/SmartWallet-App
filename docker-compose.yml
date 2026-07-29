@@ -22,7 +22,7 @@ services:
     depends_on: 
       - cache
     env_file:
-      - ./backend/.env
+      - ./.env
     command: dotnet watch --project WebApp/WebApp.csproj
   reactapp:
     build: ./Frontend
