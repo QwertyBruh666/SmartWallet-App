@@ -1,0 +1,47 @@
+.find-coin {}
+
+.find-coin__form-wrap {
+	display: flex;
+	align-items: center;
+	gap: 0.5rem;
+	height: 3rem;
+}
+
+.find-coin__form-input {
+	height: 3rem;
+	flex-grow: 1;
+	font-size: 1.2rem;
+	background-color: rgb(238, 238, 238);
+	border-style: none;
+	border-radius: 2rem;
+	padding-left: 1rem;
+	border-style: solid;
+	border-width: 2px;
+	border-color: rgb(176, 176, 176);
+}
+
+.find-coin__filter-image {
+	padding: 0.5rem;
+	background-color: rgb(224, 224, 224);
+	border-radius: 1rem;
+	height: 100%;
+	box-sizing: border-box;
+	border-style: solid;
+	border-width: 2px;
+	border-color: rgb(176, 176, 176);
+}
+
+.find-coin__form {
+	display: flex;
+	align-items: center;
+	column-gap: 0.5rem;
+	background-color: rgb(238, 238, 238);
+	border-radius: 2rem;
+	flex-grow: 1;
+}
+
+.find-form__image {
+	height: 2rem;
+	margin-right: 1rem;
+}
+

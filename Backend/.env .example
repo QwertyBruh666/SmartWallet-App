@@ -1,0 +1,10 @@
+APP__NAME="SmartWallet"
+APP__VERSION="1.0"
+
+DB_CONNECTION="server=...;port=...;database=...;user=...;password=..."
+
+COINMARKETAPI__APIKEY=""
+
+NEWSAPI__APIKEY=""
+
+AUTH__JWTSECURITYKEY=""

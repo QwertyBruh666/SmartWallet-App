@@ -1,0 +1,25 @@
+.activity-card__main {
+    display: flex;
+    gap: 1rem;
+    align-items: start;
+    flex-direction: column;
+}
+
+.activity-card__header {
+    display: flex;
+    gap: 5px;
+    align-items: center;
+}
+
+.activity-card__title {
+    font-size: 1.2rem;
+    font-weight: 550;
+}
+
+.activity-card__content {
+    font-weight: 500;
+}
+
+.activity-card__date {
+    color: rgb(57, 57, 57);
+}

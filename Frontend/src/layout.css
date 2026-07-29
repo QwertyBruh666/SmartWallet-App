@@ -1,0 +1,38 @@
+.page {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+}
+
+.page__content {
+    background-color: #f4f6f8;
+    border-radius: 2rem;
+    flex-grow: 1;
+    padding-bottom: var(--nav-bar)
+}
+
+section {
+    margin: 1.5rem 1rem;
+}
+
+canvas {
+    max-height: 50dvh;
+}
+
+.section__title {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin: 1rem 0;
+}
+
+.list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.grid {
+    display: grid;
+    gap: 1rem;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+}

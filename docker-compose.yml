@@ -1,0 +1,39 @@
+services:
+  database:
+      image: mysql
+      restart: always
+      ports:
+        - '3306:3306'
+      environment:
+        - 'MYSQL_ROOT_PASSWORD=HjK-006-DfG777'
+        - 'MYSQL_DATABASE=SmartWalletDb'
+      volumes:
+        - 'mysqlVol:/var/lib/mysql'
+  cache: 
+    image: redis
+    depends_on:
+      - database
+  backend:
+    build: ./Backend
+    ports:
+      - '5004:5004'
+    volumes:
+      - './Backend:/app'
+    depends_on: 
+      - cache
+    env_file:
+      - ./backend/.env
+    command: dotnet watch --project WebApp/WebApp.csproj
+  reactapp:
+    build: ./Frontend
+    ports:
+      - '3000:3000'
+    depends_on:
+      - backend
+    volumes:
+      - './Frontend:/app'
+    command: npm start
+volumes:
+  mysqlVol:
+
+    

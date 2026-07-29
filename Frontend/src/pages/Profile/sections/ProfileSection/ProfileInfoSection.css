@@ -1,0 +1,27 @@
+.account {
+    
+}
+
+.account-prop {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin: 1.5rem 0;
+}
+
+.account-prop__name {
+    font-size: 1.5rem;
+    font-weight: 600;
+}
+
+.account-prop__value {
+    font-size: 1.2rem;
+    font-weight: 500;
+}
+
+.logoutbttn {
+    justify-content: center;
+    background-color: rgb(209, 0, 0);
+    color: white;
+    font-size: 1.1rem;
+}

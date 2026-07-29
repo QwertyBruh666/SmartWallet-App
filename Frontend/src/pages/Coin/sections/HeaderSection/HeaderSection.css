@@ -1,0 +1,33 @@
+.coin-header {
+    display: flex;
+    background-color: white;
+    padding: 1rem;
+    margin: 1rem 0;
+    border-radius: 2rem;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.coin-header__id-info {
+    display: flex;
+    align-items: center;
+    column-gap: 1rem;
+    font-size: 1.3rem;
+    font-weight: 500;
+}
+
+.coin-header__image {
+    height: 3.5rem;
+}
+
+.coin-header__names-wrap {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: .2rem
+}
+
+.coin-header__price-info {
+    font-size: 1.3rem;
+    font-weight: 600;
+}

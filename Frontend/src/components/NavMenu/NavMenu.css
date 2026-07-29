@@ -1,0 +1,39 @@
+.menu {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 96%;
+    position: fixed;
+    bottom: 1rem;
+    background-color: rgba(135, 135, 135, 0.79);
+    border-radius: 2rem;
+    box-shadow: darkgray 0px 0px 0.5rem;
+    margin: 0 2%;
+  }
+  
+  .menu__item {
+    text-decoration: none;
+    color: white;
+    font-size: 1.2rem;
+    padding: 1.2rem 0;
+    flex-grow: 1;
+    text-align: center;
+    transition: cubic-bezier(0.075, 0.82, 0.165, 1);
+    transition-property: scale;
+    transition-duration: 300ms;
+    border-radius: 2rem;
+  
+    &:active {
+      scale: 1.1;
+      background-color: rgba(80, 80, 80, 0.79);
+    }
+  }
+  
+  .menu__picture {
+    height: 1.5rem;
+  }
+  
+  .menu__item--active {
+    background-color: rgba(32, 32, 32, 0.82);
+    color: rgb(27, 129, 255);
+  }

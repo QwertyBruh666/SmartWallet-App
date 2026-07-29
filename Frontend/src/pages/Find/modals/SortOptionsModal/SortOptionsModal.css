@@ -1,0 +1,106 @@
+.filter-sort-wrap {
+	height: 100dvh;
+	width: 100dvw;
+	position: fixed;
+	top: 0;
+	left: 0;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	background-color: rgba(0, 0, 0, 0.3);
+}
+
+.filter-sort {
+	padding: 1.5rem;
+	width: 80dvw;
+	border-radius: 2rem;
+	display: flex;
+	flex-direction: column;
+	gap: 1rem;
+	background-color: #f4f6f8;
+}
+
+.filter-sort__price-container {
+	display: flex;
+	gap: 0.5rem;
+	justify-content: space-between;
+}
+
+.filter-sort__price {
+	display: flex;
+	gap: 0.5rem;
+	min-width: 0;
+	flex-grow: 1;
+	align-items: center;
+	border-style: solid;
+	padding: 0.2rem 0.5rem;
+	border-width: 1px;
+	background-color: white;
+	border-radius: 0.5rem;
+	border-color: rgb(211, 211, 211);
+}
+
+.filter-sort__price-value {
+	flex-grow: 1;
+	min-width: 0px;
+	font-size: 1.2rem;
+	font-weight: 500;
+	border-style: none;
+	outline: none;
+}
+
+.filter-sort__sort-name,
+.filter-sort__filter-name {
+	margin-bottom: 1rem;
+	font-size: 1.2rem;
+	font-weight: 500;
+}
+
+.filter-sort__price-range {
+	background-color: white;
+	padding: 1rem;
+	border-radius: 1rem;
+}
+
+.filter-sort__price-range-names {
+	display: flex;
+	gap: .5rem;
+	color: gray;
+}
+
+.filter-sort__price-range-name {
+	box-sizing: border-box;
+	flex-grow: 1;
+	padding: .5rem;
+
+}
+
+.filter-sort__sorts {
+	background-color: white;
+	padding: 1rem;
+	border-radius: 2rem;
+}
+
+.filter-sort__sorts-container {
+	display: flex;
+	align-items: center;
+	gap: 1rem
+}
+
+.filter-sort__sort-type {
+	border-style: solid;
+	border-width: 1px;
+	border-radius: 2rem;
+	border-color: gray;
+	gap: .5rem;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-basis: 50%;
+	padding: .5rem;
+	text-align: center;
+}
+
+.filter-sort__sort-direct-image {
+	height: 1rem;
+}

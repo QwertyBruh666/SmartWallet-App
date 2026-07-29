@@ -1,0 +1,95 @@
+.login-wrap {
+    display: flex;
+    justify-content: center;
+}
+
+.login {
+    margin: 1rem;
+    margin-top: 2rem;
+    display: flex;
+    gap: 1rem;
+    flex-direction: column;
+    max-width: 750px;
+    flex-grow: 1;
+}
+
+.loginreg-label {
+    font-size: 1.2rem;
+    font-weight: 550;
+}
+
+.account-enter-card {
+    border-width: 1px;
+    border-style: solid;
+    border-color: rgb(214, 214, 214); 
+    justify-content: center;
+    column-gap: 1rem;
+    text-decoration: none;
+    color: black;
+}
+
+.account-enter-card-image {
+    height: 2.5rem;
+}
+
+.hello-text, .app-name {
+    color: white;
+}
+
+.login__header {
+    display: flex;
+    flex-direction: column;
+    gap: .5rem;
+    height: auto;
+    align-items: start;
+    padding: 1rem
+}
+
+.app-name {
+    font-size: 2rem;
+    font-weight: 550;
+}
+
+.hello-text {
+    font-size: 1.5rem;
+    font-weight: 500;
+}
+
+.loginreg-button {
+padding: 1rem;
+font-size: 1.2rem;
+font-weight: 550;
+background-color: rgb(32, 32, 32);
+color: white;
+border: none;
+border-radius: 2rem;
+}
+
+.loginreg-forgot {
+    text-align: center;
+}
+
+.divider {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+}
+
+.divider::before, .divider::after {
+    content: "";
+    display: block;
+    height: 1px;
+    flex-grow: 1;
+    background-color: rgb(204, 204, 204);
+}
+
+.loginreg-input {
+    font-size: 1.2rem;
+    border: none;
+    border-style: solid;
+    border-width: 1px;
+    border-color: rgb(221, 221, 221);
+    padding: 1rem;
+    border-radius: 1rem;
+}

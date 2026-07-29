@@ -1,0 +1,19 @@
+.loading {
+    height: 4rem;
+    width: 4rem;
+    border-style: solid;
+    border-radius: 50%;
+    border-width: .5rem;
+    border-color: #f4f6f8;
+    border-top-color: rgb(65, 65, 65);
+    animation: load 1s infinite linear;
+  }
+  
+  @keyframes load {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    } 
+  }

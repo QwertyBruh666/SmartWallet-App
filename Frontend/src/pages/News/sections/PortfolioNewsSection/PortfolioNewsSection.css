@@ -1,0 +1,16 @@
+.horizontal-news {
+    display: flex;
+    overflow-x: auto;
+    gap: 1rem;
+    scroll-snap-type: x mandatory;
+}
+
+.personalized-news__title {
+    display: flex;
+    justify-content: space-between;
+}
+
+.horizontal-news::-webkit-scrollbar {
+    display: none;
+}
+  

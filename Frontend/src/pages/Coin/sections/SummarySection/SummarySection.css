@@ -1,0 +1,22 @@
+.summary {
+    display: flex;
+    column-gap: 1rem;
+    margin: 1rem;
+    align-items: center;
+}
+
+.summary__stats {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 1.1rem;
+    font-weight: 600;
+    width: 100%;
+}
+
+.summary__stat {
+    display: flex;
+    flex-direction: column;
+    color: black;
+    font-weight: 600;
+}

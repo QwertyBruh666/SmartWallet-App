@@ -1,0 +1,25 @@
+.show-more-button {
+    gap: .5rem;
+}
+
+.show-more-button__name {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: white;
+}
+
+.show-more-button__image {
+    height: 1rem;
+    transition-property: transform;
+    transition-duration: .5s;
+}
+
+.fav {
+    margin: 1.5rem 1rem
+}
+
+.favs__list {
+    display: flex;
+    flex-direction: column;
+    row-gap: .5rem;
+}

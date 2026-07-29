@@ -1,0 +1,16 @@
+.wallet {
+    display: flex;
+    align-items: center;
+    gap: .5rem;
+}
+
+.wallet__show-coins-button {
+    padding: 1rem;
+    background-color: rgb(32, 32, 32);
+    color: white;
+    border-radius: 2rem;
+}
+
+.wallet-coins__list {
+    margin-left: 1rem;
+}

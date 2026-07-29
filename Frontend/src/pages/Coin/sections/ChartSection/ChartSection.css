@@ -1,0 +1,53 @@
+.coin-info {
+    padding-top: 1rem;
+}
+
+.coin-info__price {
+    height: 1.5rem;
+}
+
+.coin-info__chart {
+    max-height: 30rem;
+}
+
+.coin-info__type {
+    display: flex; 
+    background-color: rgb(238, 238, 238);
+    flex-grow: 1;
+    border-radius: 1rem;
+}
+
+.coin-info__type-element {
+    padding: 0.5rem 1rem;
+    border-radius: 1rem;
+    flex-basis: 50%;
+    text-align: center;
+    font-weight: 550;
+}
+
+.coin-info__time {
+    display: flex;
+    flex-grow: 1;
+    background-color: rgb(238, 238, 238);
+    border-radius: 1rem;
+}
+
+.chart-info__time-element_active {
+    color: white;
+    background-color: rgb(32, 32, 32);
+}
+
+.chart-info__time-element {
+    padding: 0.5rem 1rem;
+    flex-basis: 20%;
+    border-radius: 1rem;
+    text-align: center;
+}
+
+.coin-info__chart-controls {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin: 1rem;
+    flex-wrap: wrap;
+}
