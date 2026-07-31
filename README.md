@@ -64,6 +64,7 @@ SmartWallet is a web application for tracking cryptocurrency portfolios, explori
 
 The following environment variables are required for the application to work correctly:
 
+- `DB_CONNECTION_DOCKER` and `DB_CONNECTION_EXTERNAL` - Db connection string variables 
 - `GOOGLE_AUTH__CLIENTID` and `GOOGLE_AUTH__CLIENTSECRET` — Google authentication.
 - `COINMARKETAPI__APIKEY` — CoinGecko API key.
 - `NEWSAPI__APIKEY` — News API key.
@@ -71,7 +72,8 @@ The following environment variables are required for the application to work cor
 
 ## Getting Started
 
-Run the following command from the project root:
+You need to match database environment variables in docker-compose.yml file with your .env file
+after that run the following command from the project root:
 
 ```bash
 docker compose up --build

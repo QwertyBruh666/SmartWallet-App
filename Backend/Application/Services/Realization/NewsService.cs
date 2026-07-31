@@ -19,13 +19,11 @@ namespace Application.Services.Realization
             List<string> keyWords = [];
             foreach (Wallet wallet in await DbContext.Wallets.Where(w => w.UserId == userId).ToListAsync())
                 keyWords.Add(wallet.ExchangeName);
-            var exchangeNews = await NewsProvider.GetNewsAsync(keyWords, 1, 50);
-            result.AddRange(exchangeNews);
-            keyWords.Clear();
             foreach (FavCoin coin in await DbContext.FavCoins.Where(c => c.UserId == userId).ToListAsync())
                 keyWords.AddRange([coin.CoinId, coin.Symbol]);
-            var coins = await NewsProvider.GetNewsAsync(keyWords, 1, 50);
-            result.AddRange(coins);
+            if (keyWords.Count == 0)
+                return [];
+            result = (await NewsProvider.GetNewsAsync(keyWords, 1, 50)).ToList();
             return result;
         }
 

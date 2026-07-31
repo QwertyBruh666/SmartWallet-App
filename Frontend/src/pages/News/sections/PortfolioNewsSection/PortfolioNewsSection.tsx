@@ -1,5 +1,5 @@
 import "./PortfolioNewsSection.css"
-import { Dispatch, SetStateAction, useState } from "react"
+import { Dispatch, SetStateAction, useState, useEffect } from "react"
 import { useQuery } from "@tanstack/react-query"
 import { newsService } from "../../../../services/NewsService"
 import { NewsItem, SkeletonNews } from "../../../../components/NewsItem/NewsItem"
@@ -13,6 +13,9 @@ export function PortfolioNewsSection({ setModalNews }: { setModalNews: Dispatch<
         gcTime: 0
     })
     const [direction, setDirection] = useState<string>("H")
+
+    if(!isPending && news.length === 0)
+        return null
 
     return (
         <section className="personalized-news">

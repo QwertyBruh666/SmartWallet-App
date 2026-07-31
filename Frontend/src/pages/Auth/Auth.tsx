@@ -9,7 +9,7 @@ async function formHandler(page: string, userCredentials: { login: string, passw
         query = await authService.signIn({ password: userCredentials.password, userName: userCredentials.login })
     if (page === "Registration")
         query = await authService.signUp({ password: userCredentials.password, userName: userCredentials.login })
-    navigate("app/main")
+    navigate("/app/main")
 }
 
 export function AuthPage({ page }: { page: string }) {

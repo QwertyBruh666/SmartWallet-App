@@ -64,6 +64,7 @@ SmartWallet — веб-приложение для отслеживания кр
 
 Для корректной работы приложения необходимо задать следующие переменные окружения:
 
+- `DB_CONNECTION_DOCKER` и `DB_CONNECTION_EXTERNAL` - Строки подключения к бд с backend контейнера и с терминала на хосте
 - `GOOGLE_AUTH__CLIENTID` и `GOOGLE_AUTH__CLIENTSECRET` - авторизация через Google.
 - `COINMARKETAPI__APIKEY` - API-ключ CoinGecko.
 - `NEWSAPI__APIKEY` - API-ключ News API.
@@ -71,6 +72,7 @@ SmartWallet — веб-приложение для отслеживания кр
 
 ## Getting Started
 
+В начале следует привести переменные database контейнера в docker-compose.yml файле с переменными подключения к бд в .env
 Для запуска приложения выполните команду:
 
 ```bash
