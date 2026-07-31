@@ -5,8 +5,8 @@ services:
       ports:
         - '3306:3306'
       environment:
-        - 'MYSQL_ROOT_PASSWORD=HjK-006-DfG777'
-        - 'MYSQL_DATABASE=SmartWalletDb'
+        - 'MYSQL_ROOT_PASSWORD='
+        - 'MYSQL_DATABASE='
       volumes:
         - 'mysqlVol:/var/lib/mysql'
   cache: 
