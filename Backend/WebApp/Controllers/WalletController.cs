@@ -2,14 +2,10 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Authorization;
 using Application.DTOs.WalletDTOs;
 using Application.Services.Interfaces;
-using Application.DTOs.WalletDTOs;
-using System.Runtime.CompilerServices;
-using Microsoft.Extensions.Options;
-using Infrastructure.Options;
 
 namespace WebApp.Controllers
 {
-    [Route("[controller]/[action]")]
+    [Route("wallets")]
     public class WalletController(IWalletsService walletsService) : ControllerBase
     {
         private IWalletsService WalletsService { get; init; } = walletsService;
@@ -25,10 +21,10 @@ namespace WebApp.Controllers
 
         [HttpDelete]
         [Authorize]
-        [Route("{type}")]
-        public async Task<IActionResult> RemoveWallet([FromRoute] string type)
+        [Route("{walletId}")]
+        public async Task<IActionResult> RemoveWallet([FromRoute] string walletId)
         {
-            await WalletsService.RemoveWalletAsync((int)HttpContext.Items["userId"], type);
+            await WalletsService.RemoveWalletAsync((int)HttpContext.Items["userId"], walletId);
             return Ok();
         }
 
@@ -36,45 +32,48 @@ namespace WebApp.Controllers
         [Authorize]
         public async Task<IActionResult> GetWallets()
         {
-            IEnumerable<WalletDTO> answ = await WalletsService.GetAllWalletsAsync((int)HttpContext.Items["userId"]);
+            IEnumerable<WalletDTO> answ = await WalletsService.GetWalletsAsync((int)HttpContext.Items["userId"]);
             return Ok(answ);
         }
 
         [HttpGet]
         [Authorize]
-        [Route("{exchangeName}")]
-        public async Task<IActionResult> GetWallet(string exchangeName)
+        [Route("{walletId}")]
+        public async Task<IActionResult> GetWallet(string walletId)
         {
-            var wallet = await WalletsService.GetWalletByNameAsync(exchangeName.ToLower(), (int)HttpContext.Items["userId"]);
+            var wallet = await WalletsService.GetWalletByNameAsync(walletId.ToLower(), (int)HttpContext.Items["userId"]);
             return Ok(wallet);
         }
 
         [HttpGet]
         [Authorize]
-        public async Task<IActionResult> GetWalletActivities([FromQuery] string exchangeName)
+        [Route("{walletId}/activities")]
+        public async Task<IActionResult> GetActivitiesByWallet([FromRoute] string walletId)
         {
-            return Ok(await WalletsService.GetWalletActivitiesAsync(exchangeName.ToLower(), (int)HttpContext.Items["userId"]));
+            return Ok(await WalletsService.GetActivitiesByWalletAsync(walletId.ToLower(), (int)HttpContext.Items["userId"]));
         }
 
-        [HttpPost("/stats")]
-        [Authorize]
-        public async Task<IActionResult> GetWalletsStats()
+        [HttpPost("update-history")]
+        [Authorize(Roles = "Admin")]
+        public async Task<IActionResult> UpdateBalanceHistory()
         {
-            await WalletsService.UpdateWalletsStatsAsync();
+            await WalletsService.UpdateBalanceHistoryAsync();
             return Ok();
         }
         [HttpGet]
         [Authorize]
-        public async Task<IActionResult> GetAllWalletsBalanceStats()
+        [Route("history")]
+        public async Task<IActionResult> GetBalanceHistory()
         {
-            return Ok(await WalletsService.GetAllWalletBalanceStatsAsync((int)HttpContext.Items["userId"]));
+            return Ok(await WalletsService.GetBalanceHistoryAsync((int)HttpContext.Items["userId"]));
         }
-        
+
         [HttpGet]
         [Authorize]
-        public async Task<IActionResult> GetWalletBalanceStats(string exchangeName)
+        [Route("{walletId}/history")]
+        public async Task<IActionResult> GetBalanceHistoryByWallet(string walletId)
         {
-            return Ok(await WalletsService.GetWalletBalanceStatsAsync(exchangeName, (int)HttpContext.Items["userId"]));
+            return Ok(await WalletsService.GetBalanceHistoryByWalletAsync(walletId, (int)HttpContext.Items["userId"]));
         }
     }
 }

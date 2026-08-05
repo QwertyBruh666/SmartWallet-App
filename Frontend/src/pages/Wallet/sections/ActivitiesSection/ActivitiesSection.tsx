@@ -10,7 +10,7 @@ import { WalletActivityDTO } from "../../../../dtos/WalletActivityDTO";
 export function ActivitiesSection({ wallet }: { wallet: Wallet }) {
     const { data: activities, error, isPending } = useQuery({
         queryKey: ["walletActivities", wallet?.exchangeName],
-        queryFn: () => {console.log(wallet); return walletService.getWalletActivities(wallet.exchangeName)},
+        queryFn: () => {console.log(wallet); return walletService.getActivitiesByWallet(wallet.exchangeName)},
         enabled: wallet !== null
     })
     const [activityType, setActivityType] = useState<string>("All")

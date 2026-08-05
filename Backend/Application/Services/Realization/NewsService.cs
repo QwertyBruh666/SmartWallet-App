@@ -13,7 +13,7 @@ namespace Application.Services.Realization
         private readonly INewsProvider NewsProvider = newsProvider;
         private readonly IAppDbContext DbContext = dbContext;
 
-        public async Task<IEnumerable<NewsContentDTO>> GetNewsByUserAsync(int userId)
+        public async Task<IEnumerable<NewsContentDTO>> GetPortfolioNewsAsync(int userId)
         {
             List<NewsContentDTO> result = [];
             List<string> keyWords = [];
@@ -32,7 +32,7 @@ namespace Application.Services.Realization
             return await CacheService.CachedInfo<IEnumerable<NewsContentDTO>>("trending", () => NewsProvider.GetNewsAsync("", 1, 50), 60);
         }
 
-        public async Task<IEnumerable<NewsContentDTO>> GetNewsByCoinAsync(string coinName)
+        public async Task<IEnumerable<NewsContentDTO>> GetCoinNewsAsync(string coinName)
         {
             return await CacheService.CachedInfo<IEnumerable<NewsContentDTO>>($"newsByCoin:{coinName}", () => NewsProvider.GetNewsAsync(coinName, 1, 5));
         }

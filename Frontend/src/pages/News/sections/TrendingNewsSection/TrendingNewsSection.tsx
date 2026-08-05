@@ -7,7 +7,7 @@ import { News } from "../../../../types/News";
 export function TrendingNewsSection({ setModalNews }: {setModalNews: Dispatch<SetStateAction<News>>}) {
     const { data: news, isPending, error } = useQuery({
         queryKey: ["news", "trending"],
-        queryFn: () => newsService.getTrending(),
+        queryFn: () => newsService.getTrendingNews(),
         staleTime: 0,
         gcTime: 0
     }) 

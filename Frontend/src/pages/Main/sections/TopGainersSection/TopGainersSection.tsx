@@ -7,7 +7,7 @@ import { useEffect } from "react"
 export function TopGainersSection({ favCoins }: { favCoins: Array<Coin> }) {
     const { data: coins, error, isPending } = useQuery({
         queryKey: ["topGainers"],
-        queryFn: () => exchnageService.getTop24hCoins()
+        queryFn: () => exchnageService.getTopGainers()
     })
 
     return (

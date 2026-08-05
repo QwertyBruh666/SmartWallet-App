@@ -5,8 +5,8 @@ namespace Application.Services.Interfaces
 {
     public interface INewsService
     {
-        Task<IEnumerable<NewsContentDTO>> GetNewsByUserAsync(int userId);
+        Task<IEnumerable<NewsContentDTO>> GetPortfolioNewsAsync(int userId);
         Task<IEnumerable<NewsContentDTO>> GetTrendingNews();
-        Task<IEnumerable<NewsContentDTO>> GetNewsByCoinAsync(string currName);
+        Task<IEnumerable<NewsContentDTO>> GetCoinNewsAsync(string currName);
     }
 }

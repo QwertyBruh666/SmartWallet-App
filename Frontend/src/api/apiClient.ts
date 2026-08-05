@@ -1,6 +1,7 @@
 import { refreshPromise } from "../App.tsx";
 import { EmptyDataError } from "../exceptions/EmptyDataError.ts";
 import { RequestOptions } from "../types/RequestOptions.ts";
+import { auth } from "./endpoints/auth.ts";
 
 
 export async function apiClient(request:string, options: RequestOptions) : Promise<Response> {
@@ -13,7 +14,7 @@ export async function apiClient(request:string, options: RequestOptions) : Promi
         throw new EmptyDataError(await response.json())
 
     if(!refreshPromise.promise)
-        refreshPromise.promise = fetch("http://localhost:5004/Auth", { method: "GET", credentials: "include" }).finally( () => { refreshPromise.promise = null } )
+        refreshPromise.promise = fetch("http://localhost:5004/" + auth.auth, { method: "GET", credentials: "include" }).finally( () => { refreshPromise.promise = null } )
 
     response = await refreshPromise.promise
 

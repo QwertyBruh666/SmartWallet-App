@@ -134,7 +134,7 @@ function getCoinsForChart(wallets: Array<Wallet>) {
 export function usePortfolioChart(chartType: string, chartObj: Chart, listView?: string) {
     const { data: stats } = useQuery({
         queryKey: ["wallets-stats"],
-        queryFn: walletService.getAllWalletsBalanceStats
+        queryFn: walletService.getBalanceHistory
     })
     const { data: wallets } = useQuery({
         queryKey: ["wallets"],

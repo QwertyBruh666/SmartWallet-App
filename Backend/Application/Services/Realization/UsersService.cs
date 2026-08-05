@@ -1,8 +1,7 @@
 using Application.Services.Interfaces;
-using Domain.CustomExceptions;
+using Application.CustomExceptions;
 using Domain.Entities;
 using Application.DTOs.UserDTOs;
-using Application.DTOs.WalletDTOs;
 using Application.DataBase;
 using Microsoft.EntityFrameworkCore;
 using Application.DTOs.ExchangeDTOs;

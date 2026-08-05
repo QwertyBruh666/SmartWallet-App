@@ -25,9 +25,9 @@ builder.Services.AddAuthentication("Bearer").AddJwtBearer(options =>
     options.TokenValidationParameters = new TokenValidationParameters
     {
         ValidateIssuer = true,
-        ValidIssuer = "Kolobok&CO",
+        ValidIssuer = "issuer",
         ValidateAudience = true,
-        ValidAudience = "Papich",
+        ValidAudience = "audience",
         ValidateLifetime = true,
         ValidateIssuerSigningKey = true,
         IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("mySuperPuperVerySecureFuckingKey")),

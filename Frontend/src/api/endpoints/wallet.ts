@@ -1,9 +1,9 @@
 export const wallet = {
-    getWallets: `Wallet/GetWallets`,
-    addWallet: `Wallet/AddWallet`,
-    removeWallet: (walletName: string) => `Wallet/RemoveWallet/${walletName}`,
-    getWallet: (exchangeName: string) => `Wallet/GetWallet/${exchangeName}`,
-    getAllWalletsBalanceStats: "Wallet/GetAllWalletsBalanceStats",
-    getWalletBalanceStats: (exchangeName: string) => `Wallet/GetWalletBalanceStats?exchangeName=${exchangeName}`,
-    getWalletActivities: (walletName: string) => `Wallet/GetWalletActivities?exchangeName=${walletName}`
+    getWallets: `wallets`,
+    addWallet: `wallets`,
+    removeWallet: (walletName: string) => `wallets/${walletName}`,
+    getWallet: (walletName: string) => `wallets/${walletName}`,
+    getBalanceHistory: "wallets/history",
+    getBalanceHistoryByWallet: (walletName: string) => `wallets/${walletName}/history`,
+    getActivitiesByWallet: (walletName: string) => `wallets/${walletName}/activities`
 }

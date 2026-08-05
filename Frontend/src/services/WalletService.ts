@@ -10,9 +10,9 @@ type WalletService = {
     removeWallet(exchangeName: string): Promise<void>,
     getWallets(): Promise<Array<Wallet>>,
     getWallet(walletName:string): Promise<Wallet>,
-    getAllWalletsBalanceStats(): Promise<Array<BalanceHistoryPointDTO>>,
-    getWalletBalanceStats(exchangeName: string): Promise<Array<BalanceHistoryPointDTO>>
-    getWalletActivities(exchangeName: string): Promise<Array<WalletActivityDTO>>
+    getBalanceHistory(): Promise<Array<BalanceHistoryPointDTO>>,
+    getBalanceHistoryByWallet(exchangeName: string): Promise<Array<BalanceHistoryPointDTO>>
+    getActivitiesByWallet(exchangeName: string): Promise<Array<WalletActivityDTO>>
 }
 
 export const walletService: WalletService = {
@@ -28,13 +28,13 @@ export const walletService: WalletService = {
     async removeWallet(walletName: string) {
         await apiClient(wallet.removeWallet(walletName), { method: "DELETE" })
     },
-    async getAllWalletsBalanceStats() {
-        return await (await apiClient(wallet.getAllWalletsBalanceStats, { method: "GET" })).json()
+    async getBalanceHistory() {
+        return await (await apiClient(wallet.getBalanceHistory, { method: "GET" })).json()
     },
-    async getWalletBalanceStats(exchangeName: string) {
-        return await (await apiClient(wallet.getWalletBalanceStats(exchangeName), { method: "GET" })).json()
+    async getBalanceHistoryByWallet(exchangeName: string) {
+        return await (await apiClient(wallet.getBalanceHistoryByWallet(exchangeName), { method: "GET" })).json()
     },
-    async getWalletActivities(exchangeName: string) {
-        return await (await apiClient(wallet.getWalletActivities(exchangeName), { method: "GET" })).json()
+    async getActivitiesByWallet(exchangeName: string) {
+        return await (await apiClient(wallet.getActivitiesByWallet(exchangeName), { method: "GET" })).json()
     }   
 }

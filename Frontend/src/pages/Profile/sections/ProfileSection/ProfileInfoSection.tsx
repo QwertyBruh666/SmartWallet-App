@@ -3,14 +3,20 @@ import { useQuery } from "@tanstack/react-query";
 import { authService } from "../../../../services/AuthService";
 import { walletService } from "../../../../services/WalletService";
 import { useNavigate } from "react-router-dom";
+import { userService } from "../../../../services/UserServices";
+import { LoadingPage } from "../../../Loading/LoadingPage";
 
-export function ProfileInfoSection({ account }) {
-    const { data: wallets, isPending, error } = useQuery({
+export function ProfileInfoSection() {
+    const { data: wallets, isPending: walletsPending } = useQuery({
         queryKey: ["wallets"],
         queryFn: walletService.getWallets
     })
+    const { data: account, isPending: accountInfoPending } = useQuery({ queryKey: ["accountInfo"], queryFn: userService.getAccountInfo })
 
     const navigate = useNavigate()
+
+    if(walletsPending || accountInfoPending)
+        return <LoadingPage/>
 
     return (
         <>
@@ -21,15 +27,13 @@ export function ProfileInfoSection({ account }) {
                             <label className="account-prop__name"> Login </label>
                             <span className="account-prop__value"> {account.userName} </span>
                         </div>
-                        {account.password &&
                             <div className="account-prop">
                                 <label className="account-prop__name"> Password </label>
                                 <span className="account-prop__value"> ********* </span>
                             </div>
-                        }
                         <div className="account-prop">
                             <label className="account-prop__name"> Login Method </label>
-                            <span className="account-prop__value"> { account.password ? "password authentitication" : "Google Account" } </span>
+                            <span className="account-prop__value"> { "Unknown" } </span>
                         </div>
                         {wallets && wallets.length !== 0 &&
                             <div className="account-prop">

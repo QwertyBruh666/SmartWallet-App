@@ -1,8 +1,8 @@
 export const auth = {
-    auth: `Auth`,
-    getWithGoogle: `Auth/GetWithGoogle`,
-    getAllEnters: `Auth/GetAllEnters`,
-    signIn: `Auth/SignIn`,
-    signUp: `Auth/SignUp`,
-    logOut: `Auth/LogOut`
+    auth: `auth`,
+    getWithGoogle: `auth/sign-with-google`,
+    getAllEnters: `auth/enters`,
+    signIn: `auth/sign-in`,
+    signUp: `auth/sign-up`,
+    logOut: `auth/log-out`
 }

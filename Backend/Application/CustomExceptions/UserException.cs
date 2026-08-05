@@ -1,6 +1,6 @@
 using Application.CustomExceptions.Base;
 
-namespace Domain.CustomExceptions
+namespace Application.CustomExceptions
 {
     public class UserException(int statusCode, string code, string message) : AppException(statusCode, code, message) {}
 }

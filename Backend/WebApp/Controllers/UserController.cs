@@ -7,7 +7,7 @@ using Application.DTOs.ExchangeDTOs;
 namespace WebApp.Controllers
 {
     [ApiController]
-    [Route("[controller]/[action]")]
+    [Route("users")]
     public class UserController(IAuthService authService, ITokensService tService, IUsersService usersService) : ControllerBase
     {
         private readonly ITokensService TService = tService;
@@ -16,6 +16,7 @@ namespace WebApp.Controllers
 
         [HttpGet]
         [Authorize]
+        [Route("me")]
         public async Task<IActionResult> GetUser()
         {
             AccountInfoDTO info = await UsersService.GetAccountInfoAsync((int)HttpContext.Items["userId"]);
@@ -24,6 +25,7 @@ namespace WebApp.Controllers
 
         [HttpGet]
         [Authorize]
+        [Route("favorites")]
         public async Task<IActionResult> GetFavCoins()
         {
             List<CoinExchangeDTO> coins = await UsersService.GetFavCoinsAsync((int)HttpContext.Items["userId"]);
@@ -31,6 +33,7 @@ namespace WebApp.Controllers
         }
 
         [HttpPost]
+        [Route("favorites")]
         public async Task<IActionResult> SetFavCoin([FromQuery] string coinId, [FromQuery] string symbol)
         {
             await UsersService.SetFavCoinAsync((int)HttpContext.Items["userId"], coinId, symbol);
@@ -38,10 +41,10 @@ namespace WebApp.Controllers
         }
 
         [HttpDelete]
-        [Route("{id}")]
-        public async Task<IActionResult> RemoveFavCoin([FromRoute] string id)
+        [Route("favorites/{coinId}")]
+        public async Task<IActionResult> RemoveFavCoin([FromRoute] string coinId)
         {
-            await UsersService.RemoveFavCoinAsync(id);
+            await UsersService.RemoveFavCoinAsync(coinId);
             return Ok();
         }
 

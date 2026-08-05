@@ -8,7 +8,7 @@ import { News } from "../../../../types/News"
 export function PortfolioNewsSection({ setModalNews }: { setModalNews: Dispatch<SetStateAction<News>> }) {
     const { data: news, isPending } = useQuery({
         queryKey: ["news", "portfolio"],
-        queryFn: () => newsService.getNewsByUser(),
+        queryFn: () => newsService.getPortfolioNews(),
         staleTime: 0,
         gcTime: 0
     })

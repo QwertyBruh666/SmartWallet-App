@@ -2,7 +2,7 @@ using Application.Services.Interfaces;
 using Application.Providers;
 using Application.Factories;
 using Application.DTOs.ExchangeDTOs;
-using Domain.CustomExceptions;
+using Application.CustomExceptions;
 
 namespace Application.Services.Realization
 {

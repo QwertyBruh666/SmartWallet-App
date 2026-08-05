@@ -7,20 +7,13 @@ import { HeaderSection } from "./sections/HeaderSection/HeaderSection.tsx";
 import { ProfileInfoSection } from "./sections/ProfileSection/ProfileInfoSection.tsx";
 
 export function ProfilePage() {
-    const { data: accountInfo, error, isPending } = useQuery({ queryKey: ["accountInfo"], queryFn: userService.getUserInfo })
     const setHeader = useOutletContext<Function>()
 
     useEffect(() => { setHeader(<HeaderSection/>) }, [])
 
-    if (isPending)
-        return <LoadingPage/>
-
-    if(error)
-        return <> { error.message } </>
-
     return (
         <>
-            <ProfileInfoSection account={accountInfo}/>
+            <ProfileInfoSection/>
         </>
     )
 }

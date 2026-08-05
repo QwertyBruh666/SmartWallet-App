@@ -7,15 +7,15 @@ import { CredentialsDTO } from "../dtos/CredentialsDTO.ts"
 import { WalletDTO } from "../dtos/WalletDTO.ts"
 
 type UserService = {
-    getUserInfo(): Promise<User>,
+    getAccountInfo(): Promise<User>,
     getFavCoins(): Promise<Array<Coin>>,
     addFavCoin(coinId: string, symbol: string): Promise<void>,
     removeFavCoin(coinName: string): Promise<void>
 }
 
 export const userService: UserService = {
-    async getUserInfo() {
-        return await (await apiClient(user.getUser, { method:"GET" })).json()
+    async getAccountInfo() {
+        return await (await apiClient(user.getAccountInfo, { method:"GET" })).json()
     },
     async getFavCoins() {
         return await (await apiClient(user.getFavCoins, { method:"GET" })).json()

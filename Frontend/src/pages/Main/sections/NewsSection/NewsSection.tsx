@@ -12,7 +12,7 @@ function widthCheck(): number {
 export function NewsSection() {
     const { data: news, isPending, error } = useQuery({
         queryKey: ["news", "main"],
-        queryFn: () => newsService.getTrending(),
+        queryFn: () => newsService.getTrendingNews(),
         staleTime: 0,
         gcTime: 0
     })

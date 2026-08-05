@@ -1,6 +1,6 @@
 using Application.Services.Interfaces;
 using Domain.Entities;
-using Domain.CustomExceptions;
+using Application.CustomExceptions;
 using System.IdentityModel.Tokens.Jwt;
 using Microsoft.IdentityModel.Tokens;
 using System.Security.Claims;
@@ -21,8 +21,8 @@ namespace Infrastructure.Services
 
         private void CreateJwtTokens(List<Claim> rClaims, List<Claim> aClaims)
         {
-            JwtSecurityToken rToken = new(issuer: "Kolobok&CO", audience: "Papich", claims: rClaims, expires: DateTime.UtcNow.AddDays(30), signingCredentials: new SigningCredentials(new SymmetricSecurityKey(Encoding.UTF8.GetBytes("mySuperPuperVerySecureFuckingKey")), SecurityAlgorithms.HmacSha256));
-            JwtSecurityToken aToken = new(issuer: "Kolobok&CO", audience: "Papich", claims: aClaims, expires: DateTime.UtcNow.AddMinutes(15), signingCredentials: new SigningCredentials(new SymmetricSecurityKey(Encoding.UTF8.GetBytes("mySuperPuperVerySecureFuckingKey")), SecurityAlgorithms.HmacSha256));
+            JwtSecurityToken rToken = new(issuer: "issuer", audience: "audience", claims: rClaims, expires: DateTime.UtcNow.AddDays(30), signingCredentials: new SigningCredentials(new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Options.JwtSecurityKey)), SecurityAlgorithms.HmacSha256));
+            JwtSecurityToken aToken = new(issuer: "issuer", audience: "audience", claims: aClaims, expires: DateTime.UtcNow.AddMinutes(15), signingCredentials: new SigningCredentials(new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Options.JwtSecurityKey)), SecurityAlgorithms.HmacSha256));
 
             //Строковое представление jwt токенов
             string strRToken = new JwtSecurityTokenHandler().WriteToken(rToken);
@@ -41,9 +41,9 @@ namespace Infrastructure.Services
             var check = new JwtSecurityTokenHandler().ValidateToken(cook, new TokenValidationParameters()
             {
                 ValidateIssuer = true,
-                ValidIssuer = "Kolobok&CO",
+                ValidIssuer = "issuer",
                 ValidateAudience = true,
-                ValidAudience = "Papich",
+                ValidAudience = "audience",
                 ValidateLifetime = true,
                 ValidateIssuerSigningKey = true,
                 IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Options.JwtSecurityKey)),

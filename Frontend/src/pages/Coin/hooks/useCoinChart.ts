@@ -119,7 +119,7 @@ function getTimeOptions(timeDigit: string) {
     return timeOptions
 }
 
-async function updateChartView(data: Array<CoinChartPointDTO>, chartObj: Chart, chartType: string, chartTime: string, setAddExtra: Function) {
+function updateChartView(data: Array<CoinChartPointDTO>, chartObj: Chart, chartType: string, chartTime: string, setAddExtra: Function) {
     const timeOptions = getTimeOptions(chartTime)
     const formatted = formatChartInfo(data)
     if (chartType === "Linear")
@@ -139,7 +139,7 @@ async function updateChartView(data: Array<CoinChartPointDTO>, chartObj: Chart, 
 
 async function addExtraPart(chartObj: Chart, symbol: string, chartType: string, chartTime: string, timeStamp: number) {
     const timeOptions = getTimeOptions(chartTime)
-    const extraData =  await exchnageService.getChart(symbol, timeOptions.digit, timeStamp)
+    const extraData =  await exchnageService.getCoinChart(symbol, timeOptions.digit, timeStamp)
     const formatted = formatChartInfo(extraData)
     if (chartType === "Linear")
         chartObj.data.datasets[0].data.push(...formatted.map(i => { return { x: i.x, y: i.h } }) )
@@ -151,23 +151,21 @@ async function addExtraPart(chartObj: Chart, symbol: string, chartType: string, 
 export function useCoinChart(symbol: string, chartType: string, chartTime: string, chartObj: Chart) {
     const [emptyData, setEmptyData] = useState<boolean>(false)
     const [addExtra, setAddExtra] = useState<number>(0)
-    const { data: newData } = useQuery({
+    const { data: newData, error } = useQuery({
         queryKey: [symbol, chartType, chartTime],
         queryFn: async () => {
             const timeOptions = getTimeOptions(chartTime)
-            let res
-            try {
-                res = await exchnageService.getChart(symbol, timeOptions.digit)
-            }
-            catch (_) {
-                setEmptyData(true)
-            }
-            return res
+            return await exchnageService.getCoinChart(symbol, timeOptions.digit)
         },
         staleTime: 0,
         gcTime: 0,
         throwOnError: false
     })
+
+    useEffect(() => {
+        if(error)
+            setEmptyData(true)
+    }, [error])
 
     useEffect(() => {
         if(chartObj)

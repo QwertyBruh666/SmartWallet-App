@@ -5,24 +5,24 @@ using Application.DTOs.ExchangeDTOs;
 namespace WebApp.Controllers
 {
     [ApiController]
-    [Route("[controller]/[action]")]
+    [Route("coins")]
     public class StockExchangeController(ICryptoMarketService cmService) : ControllerBase
     {
         private readonly ICryptoMarketService CMService = cmService;
 
         [HttpGet]
-        [Route("{symbol}")]
-        public async Task<IActionResult> GetChart(string symbol, [FromQuery] string timeInterval, [FromQuery] long timeStamp = 0)
+        [Route("{symbol}/chart")]
+        public async Task<IActionResult> GetChart([FromRoute] string symbol, [FromQuery] string timeInterval, [FromQuery] long timeStamp = 0)
         {
             var candleList = await CMService.GetCoinChartAsync(symbol, timeInterval, timeStamp);
             return Ok(candleList);
         }
 
         [HttpGet]
-        [Route("{id}")]
-        public async Task<IActionResult> GetCoin([FromRoute] string id)
+        [Route("{coinId}")]
+        public async Task<IActionResult> GetCoin([FromRoute] string coinId)
         {
-            CoinExchangeDTO coinInfo = await CMService.GetCoinByIdAsync(id);
+            CoinExchangeDTO coinInfo = await CMService.GetCoinByIdAsync(coinId);
             return Ok(coinInfo);
         }
 
@@ -33,6 +33,7 @@ namespace WebApp.Controllers
         }
 
         [HttpGet]
+        [Route("top-gainers")]
         public async Task<IActionResult> GetTop24hCoins()
         {
             return Ok(await CMService.GetTopPriceChange24h());

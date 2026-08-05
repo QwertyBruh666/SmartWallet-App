@@ -4,7 +4,7 @@ using Application.DTOs.UserDTOs;
 
 namespace WebApp.Controllers
 {
-    [Route("[controller]/[action]")]
+    [Route("auth")]
     public class AuthController : ControllerBase
     {
         private IAuthService AuthService { get; init; }
@@ -17,6 +17,7 @@ namespace WebApp.Controllers
         }
 
         [HttpGet]
+        [Route("sign-with-google")]
         public async Task<IActionResult> GetWithGoogle([FromQuery] string code)
         {
             var id = await AuthService.GoogleAuth(code);
@@ -25,12 +26,14 @@ namespace WebApp.Controllers
         }
 
         [HttpGet]
+        [Route("enters")]
         public async Task<IActionResult> GetAllEnters()
         {
             return Ok(await TokensService.GetAllValidRefTokensByUserId((int)HttpContext.Items["userId"]));
         }
 
         [HttpPost]
+        [Route("sign-in")]
         [Consumes("application/json")]
         public async Task<IActionResult> SignIn([FromBody] LoginInfoDTO info)
         {
@@ -40,7 +43,6 @@ namespace WebApp.Controllers
         }
 
         [HttpGet]
-        [Route("/[controller]")]
         public async Task<IActionResult> Auth()
         {
             await TokensService.CreateNewJwtTokensByRefreshTokenAsync();
@@ -48,6 +50,7 @@ namespace WebApp.Controllers
         }
 
         [HttpPost]
+        [Route("sign-up")]
         [Consumes("application/json")]
         public async Task<IActionResult> SignUp([FromBody] LoginInfoDTO loginInfo)
         {
@@ -57,6 +60,7 @@ namespace WebApp.Controllers
         }
 
         [HttpPost]
+        [Route("log-out")]
         public async Task<IActionResult> LogOut()
         {
             await AuthService.LogOut((int)HttpContext.Items["userId"]);

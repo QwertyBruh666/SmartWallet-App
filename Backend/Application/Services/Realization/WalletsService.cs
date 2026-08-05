@@ -3,7 +3,7 @@ using Application.DTOs.ExchangeDTOs;
 using Application.DTOs.WalletDTOs;
 using Application.Factories;
 using Application.Services.Interfaces;
-using Domain.CustomExceptions;
+using Application.CustomExceptions;
 using Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 
@@ -44,7 +44,7 @@ namespace Application.Services.Realization
             await AppDb.SaveChangesAsync();
         }
 
-        public async Task<List<BalanceHistoryPointDTO>> GetAllWalletBalanceStatsAsync(int userId)
+        public async Task<List<BalanceHistoryPointDTO>> GetBalanceHistoryAsync(int userId)
         {
             var stats = await AppDb.WalletsStats.Where(s => s.UserId == userId).ToListAsync();
             List<BalanceHistoryPointDTO> sums = [];
@@ -69,7 +69,7 @@ namespace Application.Services.Realization
             return sums;
         }
 
-        public async Task<IEnumerable<WalletDTO>> GetAllWalletsAsync(int userId)
+        public async Task<IEnumerable<WalletDTO>> GetWalletsAsync(int userId)
         {
             List<Wallet> wallets = await AppDb.Wallets.Where(w => w.UserId == userId).ToListAsync();
             var formattedWallets = new List<WalletDTO>();
@@ -80,7 +80,7 @@ namespace Application.Services.Realization
             return formattedWallets;
         }
 
-        public async Task<List<BalanceHistoryPointDTO>> GetWalletBalanceStatsAsync(string exchangeName, int userId)
+        public async Task<List<BalanceHistoryPointDTO>> GetBalanceHistoryByWalletAsync(string exchangeName, int userId)
         {
             return await AppDb.WalletsStats.Where(s => s.UserId == userId && s.ExchangeName == exchangeName).Select(s => new BalanceHistoryPointDTO(s.TimeStamp, s.WalletUsdValue)).ToListAsync();
         }
@@ -99,12 +99,12 @@ namespace Application.Services.Realization
             return wallet;
         }
 
-        public async Task UpdateWalletsStatsAsync()
+        public async Task UpdateBalanceHistoryAsync()
         {
             var users = await AppDb.Users.ToListAsync();
             foreach (User user in users)
             {
-                var userWallets = (await GetAllWalletsAsync(user.Id)).ToList();
+                var userWallets = (await GetWalletsAsync(user.Id)).ToList();
                 List<Stats> result = [];
                 foreach (var userWallet in userWallets)
                 {
@@ -115,7 +115,7 @@ namespace Application.Services.Realization
             }
         }
 
-        public async Task<List<WalletActivityDTO>> GetWalletActivitiesAsync(string exchangeName, int userId)
+        public async Task<List<WalletActivityDTO>> GetActivitiesByWalletAsync(string exchangeName, int userId)
         {
             Wallet walletCredentials = await AppDb.Wallets.FirstAsync(w => w.UserId == userId && w.ExchangeName == exchangeName);
             var adapter = ExchangeAdapterFactory.GetAdapter(exchangeName, walletCredentials.ApiKey, EncryptionService.Decrypt(walletCredentials.SecretKey), EncryptionService.Decrypt(walletCredentials.PassPhrase));
@@ -123,7 +123,7 @@ namespace Application.Services.Realization
             return await adapter.GetWalletActivities();
         }
         
-        public async Task<string> GetAllWalletsActivitiesAsync()
+        public async Task<string> GetActivitiesAsync()
         {
             return "";
         }

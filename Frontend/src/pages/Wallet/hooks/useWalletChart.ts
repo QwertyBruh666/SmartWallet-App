@@ -108,7 +108,7 @@ export function useWalletChart(walletName: string, chartType: string, chartObj: 
     })
     const { data: stats } = useQuery({
         queryKey: ["wallet", "stats", walletName],
-        queryFn: () => walletService.getWalletBalanceStats(walletName)
+        queryFn: () => walletService.getBalanceHistoryByWallet(walletName)
     })
 
     useEffect(() => {
